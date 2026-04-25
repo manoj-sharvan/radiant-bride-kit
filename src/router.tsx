@@ -1,11 +1,12 @@
 import { createRouter, useRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
+import { PageLoader } from "./components/PageLoader";
 
 function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-16">
       <div className="max-w-md text-center">
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10">
           <svg
@@ -15,6 +16,7 @@ function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => vo
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -23,28 +25,29 @@ function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => vo
             />
           </svg>
         </div>
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">Something went wrong</h1>
+        <h1 className="font-display text-3xl text-burgundy">Something went wrong</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          An unexpected error occurred. Please try again.
+          An unexpected error occurred while loading this page.
         </p>
         {import.meta.env.DEV && error.message && (
           <pre className="mt-4 max-h-40 overflow-auto rounded-md bg-muted p-3 text-left font-mono text-xs text-destructive">
             {error.message}
           </pre>
         )}
-        <div className="mt-6 flex items-center justify-center gap-3">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <button
+            type="button"
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex min-h-11 items-center justify-center rounded-full gradient-cta px-5 py-2.5 text-sm font-medium text-primary-foreground"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-burgundy/30 px-5 py-2.5 text-sm font-medium text-burgundy hover:bg-burgundy hover:text-primary-foreground transition-colors"
           >
             Go home
           </a>
@@ -59,7 +62,11 @@ export const getRouter = () => {
     routeTree,
     context: {},
     scrollRestoration: true,
+    defaultPreload: "intent",
     defaultPreloadStaleTime: 0,
+    defaultPendingComponent: PageLoader,
+    defaultPendingMs: 200,
+    defaultPendingMinMs: 300,
     defaultErrorComponent: DefaultErrorComponent,
   });
 
