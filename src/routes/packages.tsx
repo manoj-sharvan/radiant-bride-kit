@@ -4,14 +4,22 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/motion-helpers";
 import { packages } from "@/data/content";
 import { whatsappLink } from "@/lib/site";
+import { buildLinks, buildMeta, breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/packages")({
   head: () => ({
-    meta: [
-      { title: "Bridal Makeup Packages & Pricing | Divya Tiruvannamalai" },
-      { name: "description", content: "Engagement, Classic, Royal & Complete Wedding bridal packages. Transparent pricing starting ₹4,500. Book on WhatsApp." },
-      { property: "og:title", content: "Bridal Packages — Divya Bridal Makeup Artist" },
-      { property: "og:description", content: "Curated bridal packages for every budget. Transparent pricing." },
+    meta: buildMeta({
+      title: "Bridal Makeup Packages & Pricing | Divya Tiruvannamalai",
+      description:
+        "Engagement, Classic, Royal & Complete Wedding bridal packages. Transparent pricing starting ₹4,500. Book on WhatsApp.",
+      path: "/packages",
+    }),
+    links: buildLinks("/packages"),
+    scripts: [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Packages", path: "/packages" },
+      ]),
     ],
   }),
   component: Packages,

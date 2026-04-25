@@ -4,14 +4,22 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/motion-helpers";
 import { services } from "@/data/content";
 import { whatsappLink } from "@/lib/site";
+import { buildLinks, buildMeta, breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
-    meta: [
-      { title: "Bridal Makeup Services & Pricing | Divya Tiruvannamalai" },
-      { name: "description", content: "HD bridal makeup, hairstyling, saree draping, mehendi & more. Transparent pricing. Premium products. Home service available." },
-      { property: "og:title", content: "Bridal Makeup Services & Pricing — Divya" },
-      { property: "og:description", content: "HD bridal makeup, hairstyling, saree draping, mehendi & more. Transparent pricing." },
+    meta: buildMeta({
+      title: "Bridal Makeup Services & Pricing | Divya Tiruvannamalai",
+      description:
+        "HD bridal makeup, hairstyling, saree draping, mehendi & more. Transparent pricing. Premium products. Home service available.",
+      path: "/services",
+    }),
+    links: buildLinks("/services"),
+    scripts: [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Services", path: "/services" },
+      ]),
     ],
   }),
   component: Services,

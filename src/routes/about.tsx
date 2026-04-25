@@ -4,16 +4,24 @@ import aboutImg from "@/assets/about-artist.jpg";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/motion-helpers";
 import { whatsappLink } from "@/lib/site";
+import { buildLinks, buildMeta, breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    meta: [
-      { title: "About Divya — Bridal Makeup Artist in Tiruvannamalai" },
-      { name: "description", content: "Meet Divya, a passionate bridal makeup artist in Tiruvannamalai with 100+ happy brides. Trained in HD, airbrush & traditional South Indian bridal looks." },
-      { property: "og:title", content: "About Divya — Bridal Makeup Artist" },
-      { property: "og:description", content: "Meet Divya, passionate bridal makeup artist with 100+ happy brides." },
-      { property: "og:image", content: aboutImg },
-      { name: "twitter:image", content: aboutImg },
+    meta: buildMeta({
+      title: "About Divya — Bridal Makeup Artist in Tiruvannamalai",
+      description:
+        "Meet Divya, a passionate bridal makeup artist in Tiruvannamalai with 100+ happy brides. Trained in HD, airbrush & traditional South Indian bridal looks.",
+      path: "/about",
+      image: aboutImg,
+      type: "profile",
+    }),
+    links: buildLinks("/about"),
+    scripts: [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about" },
+      ]),
     ],
   }),
   component: About,
