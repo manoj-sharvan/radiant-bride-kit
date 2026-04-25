@@ -54,6 +54,7 @@ export const packages = [
     name: "Engagement",
     price: "₹4,500",
     tag: "Starter",
+    highlight: false,
     features: [
       "Soft glam makeup",
       "Basic hairstyling",
@@ -80,6 +81,7 @@ export const packages = [
     name: "Royal Bridal",
     price: "₹14,500",
     tag: "Premium",
+    highlight: false,
     features: [
       "Airbrush HD makeup",
       "Designer hair updo",
@@ -93,6 +95,7 @@ export const packages = [
     name: "Complete Wedding",
     price: "₹22,000",
     tag: "Full ceremony",
+    highlight: false,
     features: [
       "Engagement look",
       "Bridal day look",
