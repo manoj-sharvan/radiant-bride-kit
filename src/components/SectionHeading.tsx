@@ -7,6 +7,8 @@ interface SectionHeadingProps {
   align?: "left" | "center";
   /** Optional id so parent <section> can use aria-labelledby */
   titleId?: string;
+  /** Heading level. Defaults to h2; use "h1" once per page for the page's primary heading. */
+  as?: "h1" | "h2";
 }
 
 export function SectionHeading({
@@ -15,8 +17,10 @@ export function SectionHeading({
   subtitle,
   align = "center",
   titleId,
+  as = "h2",
 }: SectionHeadingProps) {
   const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
+  const Heading = as;
   return (
     <Reveal className={`max-w-2xl ${alignClass}`}>
       {eyebrow && (
@@ -24,12 +28,12 @@ export function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <h2
+      <Heading
         id={titleId}
         className="font-display text-3xl sm:text-4xl md:text-5xl text-burgundy text-balance"
       >
         {title}
-      </h2>
+      </Heading>
       {subtitle && (
         <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed font-serif-elegant text-balance">
           {subtitle}
@@ -39,4 +43,3 @@ export function SectionHeading({
     </Reveal>
   );
 }
-
