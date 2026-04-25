@@ -66,6 +66,13 @@ export const Route = createRootRoute({
       { property: "og:site_name", content: SITE.name },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: `@${SITE.instagram}` },
+      { property: "og:title", content: "Divya — Premium Bridal Makeup Artist in Tiruvannamalai" },
+      { name: "twitter:title", content: "Divya — Premium Bridal Makeup Artist in Tiruvannamalai" },
+      { name: "description", content: "A premium bridal makeup artist website in Tiruvannamalai, India, designed to convert visitors into WhatsApp bookings." },
+      { property: "og:description", content: "A premium bridal makeup artist website in Tiruvannamalai, India, designed to convert visitors into WhatsApp bookings." },
+      { name: "twitter:description", content: "A premium bridal makeup artist website in Tiruvannamalai, India, designed to convert visitors into WhatsApp bookings." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/92b621e7-fed3-4faf-8b48-83def1276c24/id-preview-db8696f7--98d6295f-62a1-4cc5-a853-96f320acb76f.lovable.app-1777105463859.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/92b621e7-fed3-4faf-8b48-83def1276c24/id-preview-db8696f7--98d6295f-62a1-4cc5-a853-96f320acb76f.lovable.app-1777105463859.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
