@@ -213,9 +213,31 @@
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .animate-pulse-soft { animation: pulse-soft 2.4s ease-in-out infinite; }
 .animate-ken-burns { animation: ken-burns 18s ease-in-out infinite alternate; }
+
+/* Accessibility: focus-visible ring */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-pulse-soft,
+  .animate-ken-burns { animation: none !important; }
+}
+

@@ -3,14 +3,22 @@ import { MessageCircle, Phone, Instagram, MapPin, Clock, Mail } from "lucide-rea
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/motion-helpers";
 import { SITE, whatsappLink, telLink } from "@/lib/site";
+import { buildLinks, buildMeta, breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
-    meta: [
-      { title: "Contact Divya — Book Your Bridal Makeup in Tiruvannamalai" },
-      { name: "description", content: "Book bridal makeup with Divya in Tiruvannamalai. WhatsApp 8838114951 or call 8667671121. Home service across Tamil Nadu." },
-      { property: "og:title", content: "Contact & Book — Divya Bridal Makeup Artist" },
-      { property: "og:description", content: "WhatsApp, call or DM us on Instagram to reserve your wedding date." },
+    meta: buildMeta({
+      title: "Contact Divya — Book Your Bridal Makeup in Tiruvannamalai",
+      description:
+        "Book bridal makeup with Divya in Tiruvannamalai. WhatsApp 8838114951 or call 8667671121. Home service across Tamil Nadu.",
+      path: "/contact",
+    }),
+    links: buildLinks("/contact"),
+    scripts: [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Contact", path: "/contact" },
+      ]),
     ],
   }),
   component: Contact,

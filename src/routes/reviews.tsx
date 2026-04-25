@@ -4,14 +4,22 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/motion-helpers";
 import { testimonials } from "@/data/content";
 import { whatsappLink } from "@/lib/site";
+import { buildLinks, buildMeta, breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/reviews")({
   head: () => ({
-    meta: [
-      { title: "Bride Reviews & Testimonials | Divya Bridal Makeup Tiruvannamalai" },
-      { name: "description", content: "Read 5-star reviews from 100+ happy brides who chose Divya for their wedding day in Tiruvannamalai and across Tamil Nadu." },
-      { property: "og:title", content: "Reviews from Real Brides — Divya Bridal Makeup" },
-      { property: "og:description", content: "100+ five-star reviews from real South Indian brides." },
+    meta: buildMeta({
+      title: "Bride Reviews & Testimonials | Divya Bridal Makeup Tiruvannamalai",
+      description:
+        "Read 5-star reviews from 100+ happy brides who chose Divya for their wedding day in Tiruvannamalai and across Tamil Nadu.",
+      path: "/reviews",
+    }),
+    links: buildLinks("/reviews"),
+    scripts: [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Reviews", path: "/reviews" },
+      ]),
     ],
   }),
   component: Reviews,
