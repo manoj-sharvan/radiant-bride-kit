@@ -2,19 +2,30 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MessageCircle } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/motion-helpers";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { faqs } from "@/data/content";
 import { whatsappLink } from "@/lib/site";
+import { buildLinks, buildMeta, breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
-    meta: [
-      { title: "Bridal Makeup FAQ | Divya Tiruvannamalai" },
-      { name: "description", content: "Answers to common questions about bridal makeup booking, trials, products, home service & pricing in Tiruvannamalai." },
-      { property: "og:title", content: "Frequently Asked Questions — Divya Bridal Makeup" },
-      { property: "og:description", content: "Everything brides ask before booking — answered." },
-    ],
+    meta: buildMeta({
+      title: "Bridal Makeup FAQ | Divya Tiruvannamalai",
+      description:
+        "Answers to common questions about bridal makeup booking, trials, products, home service & pricing in Tiruvannamalai.",
+      path: "/faq",
+    }),
+    links: buildLinks("/faq"),
     scripts: [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "FAQ", path: "/faq" },
+      ]),
       {
         type: "application/ld+json",
         children: JSON.stringify({
