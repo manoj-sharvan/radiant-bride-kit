@@ -30,6 +30,7 @@ function Services() {
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
+          as="h1"
           eyebrow="Our services"
           title="Beauty for every moment of your wedding"
           subtitle="From engagement to reception, every service is delivered with luxury products and personalised care."
