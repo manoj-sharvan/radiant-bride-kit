@@ -54,6 +54,7 @@ export const packages = [
     name: "Engagement",
     price: "₹4,500",
     tag: "Starter",
+    highlight: false,
     features: [
       "Soft glam makeup",
       "Basic hairstyling",
