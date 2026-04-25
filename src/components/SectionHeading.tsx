@@ -5,9 +5,17 @@ interface SectionHeadingProps {
   title: string;
   subtitle?: string;
   align?: "left" | "center";
+  /** Optional id so parent <section> can use aria-labelledby */
+  titleId?: string;
 }
 
-export function SectionHeading({ eyebrow, title, subtitle, align = "center" }: SectionHeadingProps) {
+export function SectionHeading({
+  eyebrow,
+  title,
+  subtitle,
+  align = "center",
+  titleId,
+}: SectionHeadingProps) {
   const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
   return (
     <Reveal className={`max-w-2xl ${alignClass}`}>
@@ -16,7 +24,10 @@ export function SectionHeading({ eyebrow, title, subtitle, align = "center" }: S
           {eyebrow}
         </p>
       )}
-      <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-burgundy text-balance">
+      <h2
+        id={titleId}
+        className="font-display text-3xl sm:text-4xl md:text-5xl text-burgundy text-balance"
+      >
         {title}
       </h2>
       {subtitle && (
@@ -24,7 +35,8 @@ export function SectionHeading({ eyebrow, title, subtitle, align = "center" }: S
           {subtitle}
         </p>
       )}
-      <div className="mt-6 mx-auto h-px w-24 gold-divider" />
+      <div aria-hidden="true" className="mt-6 mx-auto h-px w-24 gold-divider" />
     </Reveal>
   );
 }
+
